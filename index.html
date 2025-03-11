@@ -48,7 +48,7 @@
         <form id="rutForm">
             <input type="text" id="rut" name="rut" placeholder="Ej: 12345678-9" required>
             <br>
-            <button type="submit">aceptar</button>
+            <button type="submit">Aceptar</button>
         </form>
     </div>
 
@@ -56,14 +56,25 @@
         document.getElementById('rutForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const rut = document.getElementById('rut').value;
-            fetch('https://script.google.com/macros/s/AKfycbxwXx1e4U-aarTAHledniFalmFv_2VfAnOEXtWRsXc-uqj-XrA-MoQ4a8vxwLUlOTMxkg/exec', {
+
+            // URL de tu script de Google Apps Script
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbwQZwbbCwoQo6J_O5VuU2Qt42lirJQskdweb33KBU6gD8BP0HVTJpgwSXk7y72KNCsHlg/exec';
+
+            // Enviar los datos al script
+            fetch(scriptUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ rut: rut })
             })
             .then(response => response.text())
-            .then(data => alert('RUT registrado correctamente'))
-            .catch(error => console.error('Error:', error));
+            .then(data => {
+                alert('RUT registrado correctamente');
+                console.log('Respuesta del servidor:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Hubo un error al registrar el RUT.');
+            });
         });
     </script>
 </body>
