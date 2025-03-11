@@ -53,29 +53,29 @@
     </div>
 
     <script>
-        document.getElementById('rutForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const rut = document.getElementById('rut').value;
+document.getElementById('rutForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const rut = document.getElementById('rut').value;
 
-            // Usar un proxy para evitar CORS
-            const proxyUrl = 'https://cors-proxy-cc.herokuapp.com/';
-            const scriptUrl = 'https://script.google.com/macros/s/AKfycbzat-8J125Uhl68XEi4wtqZgJmsVkThxqGz_J1eH2vRcruI6F6JCjJvZmybqUwNG28cBg/exec';
+    // Usar un proxy alternativo
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    const scriptUrl = 'https://script.google.com/macros/s/AKfycbzat-8J125Uhl68XEi4wtqZgJmsVkThxqGz_J1eH2vRcruI6F6JCjJvZmybqUwNG28cBg/exec';
 
-            fetch(proxyUrl + scriptUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ rut: rut })
-            })
-            .then(response => response.text())
-            .then(data => {
-                alert('RUT registrado correctamente');
-                console.log('Respuesta del servidor:', data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Hubo un error al registrar el RUT.');
-            });
-        });
+    fetch(proxyUrl + scriptUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ rut: rut })
+    })
+    .then(response => response.text())
+    .then(data => {
+        alert('RUT registrado correctamente');
+        console.log('Respuesta del servidor:', data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Hubo un error al registrar el RUT.');
+    });
+});
     </script>
 </body>
 </html>
