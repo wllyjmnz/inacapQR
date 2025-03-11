@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de RUT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #c8102e;
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background: #9b0c24;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            display: inline-block;
+        }
+        h1 {
+            font-size: 2em;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1.2em;
+            width: 80%;
+            max-width: 300px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>INGRESA TU RUT</h1>
+        <form id="rutForm">
+            <input type="text" id="rut" name="rut" placeholder="Ej: 12345678-9" required>
+            <br>
+            <button type="submit">aceptar</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('rutForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const rut = document.getElementById('rut').value;
+            fetch('https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ rut: rut })
+            })
+            .then(response => response.text())
+            .then(data => alert('RUT registrado correctamente'))
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
