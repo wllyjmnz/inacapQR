@@ -56,7 +56,7 @@
         document.getElementById('rutForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const rut = document.getElementById('rut').value;
-            fetch('https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec', {
+            fetch('https://script.google.com/macros/s/AKfycbxwXx1e4U-aarTAHledniFalmFv_2VfAnOEXtWRsXc-uqj-XrA-MoQ4a8vxwLUlOTMxkg/exec', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ rut: rut })
