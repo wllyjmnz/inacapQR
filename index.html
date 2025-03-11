@@ -57,11 +57,11 @@
             e.preventDefault();
             const rut = document.getElementById('rut').value;
 
-            // URL de tu script de Google Apps Script
+            // Usar un proxy para evitar CORS
+            const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
             const scriptUrl = 'https://script.google.com/macros/s/AKfycbwQZwbbCwoQo6J_O5VuU2Qt42lirJQskdweb33KBU6gD8BP0HVTJpgwSXk7y72KNCsHlg/exec';
 
-            // Enviar los datos al script
-            fetch(scriptUrl, {
+            fetch(proxyUrl + scriptUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ rut: rut })
